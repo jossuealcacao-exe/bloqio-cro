@@ -23,7 +23,7 @@
   margin: 0 auto;
   padding: 12px 48px 12px 16px;
   display: flex;
-  gap: 12px;
+  gap: 14px;
   align-items: flex-start;
   flex-direction: column;
 }
@@ -54,9 +54,30 @@
 .topbar-cro__actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  column-gap: 10px;
+  row-gap: 8px;
   flex-wrap: wrap;
   width: 100%;
+}
+
+.topbar-cro--align-left .topbar-cro__messages {
+  text-align: left;
+}
+
+.topbar-cro--align-left .topbar-cro__actions {
+  justify-content: flex-start;
+}
+
+.topbar-cro--align-center .topbar-cro__content {
+  align-items: center;
+}
+
+.topbar-cro--align-center .topbar-cro__messages {
+  text-align: center;
+}
+
+.topbar-cro--align-center .topbar-cro__actions {
+  justify-content: center;
 }
 
 .topbar-cro__countdown {
@@ -66,7 +87,9 @@
   white-space: nowrap;
   font-weight: 600;
   line-height: 1;
-  opacity: 0.95;
+  opacity: 0.92;
+  margin-right: 4px;
+  padding-right: 2px;
 }
 
 .topbar-cro__btn {
@@ -80,6 +103,10 @@
   font-size: 12px;
   font-weight: 600;
   line-height: 1;
+}
+
+.topbar-cro__btn + .topbar-cro__btn {
+  margin-left: 2px;
 }
 
 .topbar-cro__btn--primary {
@@ -112,23 +139,81 @@
   border-radius: 4px;
 }
 
+@media (max-width: 749px) {
+  .topbar-cro--mobile-compact .topbar-cro__content {
+    padding: 8px 40px 8px 10px;
+    gap: 7px;
+  }
+
+  .topbar-cro--mobile-compact .topbar-cro__actions {
+    column-gap: 6px;
+    row-gap: 5px;
+  }
+
+  .topbar-cro--mobile-compact .topbar-cro__main {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .topbar-cro--mobile-compact .topbar-cro__sub {
+    font-size: 10px;
+  }
+
+  .topbar-cro--mobile-compact .topbar-cro__countdown {
+    font-size: 11px;
+    margin-right: 3px;
+    padding-right: 1px;
+  }
+
+  .topbar-cro--mobile-compact .topbar-cro__btn {
+    min-height: 28px;
+    padding: 5px 10px;
+  }
+}
+
 @media (min-width: 750px) {
   .topbar-cro__content {
     padding: 12px 48px 12px 16px;
     align-items: center;
     justify-content: space-between;
     flex-direction: row;
-    gap: 16px;
+    gap: 20px;
   }
 
   .topbar-cro__messages {
     width: auto;
-    max-width: 60%;
+    max-width: 58%;
   }
 
   .topbar-cro__actions {
     width: auto;
     justify-content: flex-end;
     margin-left: auto;
+    column-gap: 10px;
+    row-gap: 8px;
+  }
+
+  .topbar-cro--align-left .topbar-cro__content {
+    justify-content: flex-start;
+  }
+
+  .topbar-cro--align-left .topbar-cro__actions {
+    justify-content: flex-start;
+    margin-left: 20px;
+  }
+
+  .topbar-cro--align-center .topbar-cro__content {
+    justify-content: center;
+  }
+
+  .topbar-cro--align-center .topbar-cro__messages {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .topbar-cro--align-center .topbar-cro__actions {
+    justify-content: center;
+    margin-left: 0;
+    width: auto;
   }
 }

@@ -1,10 +1,11 @@
 {% if block.settings.enable_bar %}
+  {% if block.settings.show_home_only == false or request.page_type == 'index' %}
   {{ 'topbar-cro.css' | asset_url | stylesheet_tag }}
   <script src="{{ 'topbar-cro.js' | asset_url }}" defer></script>
 
   <div
     id="topbar-cro-{{ block.id }}"
-    class="topbar-cro"
+    class="topbar-cro topbar-cro--align-{{ block.settings.content_alignment }}{% if block.settings.mobile_compact %} topbar-cro--mobile-compact{% endif %}"
     style="
       --topbar-bg: {{ block.settings.background_color }};
       --topbar-text: {{ block.settings.text_color }};
@@ -48,6 +49,7 @@
       <button type="button" class="topbar-cro__close" aria-label="Close top bar">×</button>
     {% endif %}
   </div>
+  {% endif %}
 {% endif %}
 
 {% schema %}
@@ -56,6 +58,18 @@
   "target": "body",
   "settings": [
     { "type": "checkbox", "id": "enable_bar", "label": "Enable bar", "default": true },
+    { "type": "checkbox", "id": "mobile_compact", "label": "Mobile compact mode", "default": false },
+    {
+      "type": "select",
+      "id": "content_alignment",
+      "label": "Content alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" }
+      ],
+      "default": "left"
+    },
+    { "type": "checkbox", "id": "show_home_only", "label": "Show homepage only", "default": false },
     { "type": "text", "id": "main_message", "label": "Main message", "default": "Limited-time CRO offer" },
     { "type": "text", "id": "submessage", "label": "Submessage", "default": "Boost conversions with this deal." },
     { "type": "text", "id": "primary_button_label", "label": "Primary button label", "default": "Shop now" },
