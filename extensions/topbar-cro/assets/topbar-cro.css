@@ -1,0 +1,83 @@
+.topbar-cro {
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  width: 100%;
+  background: var(--topbar-bg, #111111);
+  color: var(--topbar-text, #ffffff);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.topbar-cro__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 16px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar-cro__messages {
+  min-width: 0;
+}
+
+.topbar-cro__main,
+.topbar-cro__sub {
+  margin: 0;
+}
+
+.topbar-cro__main {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.topbar-cro__sub {
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+.topbar-cro__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.topbar-cro__countdown {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.topbar-cro__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.topbar-cro__btn--primary {
+  background: var(--topbar-primary-bg, #ffffff);
+  color: var(--topbar-primary-text, #111111);
+}
+
+.topbar-cro__btn--secondary {
+  color: var(--topbar-text, #ffffff);
+  border: 1px solid currentColor;
+}
+
+.topbar-cro__close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--topbar-text, #ffffff);
+  cursor: pointer;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  font-size: 18px;
+  line-height: 1;
+}

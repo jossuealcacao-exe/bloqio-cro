@@ -1,0 +1,74 @@
+{% if block.settings.enable_bar %}
+  {{ 'topbar-cro.css' | asset_url | stylesheet_tag }}
+  {{ 'topbar-cro.js' | asset_url | script_tag }}
+
+  <div
+    id="topbar-cro-{{ block.id }}"
+    class="topbar-cro"
+    style="
+      --topbar-bg: {{ block.settings.background_color }};
+      --topbar-text: {{ block.settings.text_color }};
+      --topbar-primary-bg: {{ block.settings.primary_button_background }};
+      --topbar-primary-text: {{ block.settings.primary_button_text_color }};
+    "
+    data-closable="{{ block.settings.closable }}"
+  >
+    <div class="topbar-cro__content">
+      <div class="topbar-cro__messages">
+        <p class="topbar-cro__main">{{ block.settings.main_message }}</p>
+        {% if block.settings.submessage != blank %}
+          <p class="topbar-cro__sub">{{ block.settings.submessage }}</p>
+        {% endif %}
+      </div>
+
+      <div class="topbar-cro__actions">
+        {% if block.settings.show_countdown %}
+          <span
+            class="topbar-cro__countdown"
+            data-countdown-end="{{ block.settings.end_datetime_text }}"
+          ></span>
+        {% endif %}
+
+        {% if block.settings.primary_button_label != blank and block.settings.primary_button_url != blank %}
+          <a class="topbar-cro__btn topbar-cro__btn--primary" href="{{ block.settings.primary_button_url }}">
+            {{ block.settings.primary_button_label }}
+          </a>
+        {% endif %}
+
+        {% if block.settings.show_secondary_button and block.settings.secondary_button_label != blank and block.settings.secondary_button_url != blank %}
+          <a class="topbar-cro__btn topbar-cro__btn--secondary" href="{{ block.settings.secondary_button_url }}">
+            {{ block.settings.secondary_button_label }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+
+    {% if block.settings.closable %}
+      <button type="button" class="topbar-cro__close" aria-label="Close top bar">×</button>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "CRO Top Bar",
+  "target": "body",
+  "settings": [
+    { "type": "checkbox", "id": "enable_bar", "label": "Enable bar", "default": true },
+    { "type": "text", "id": "main_message", "label": "Main message", "default": "Limited-time CRO offer" },
+    { "type": "text", "id": "submessage", "label": "Submessage", "default": "Boost conversions with this deal." },
+    { "type": "text", "id": "primary_button_label", "label": "Primary button label", "default": "Shop now" },
+    { "type": "url", "id": "primary_button_url", "label": "Primary button URL" },
+    { "type": "checkbox", "id": "show_secondary_button", "label": "Show secondary button", "default": false },
+    { "type": "text", "id": "secondary_button_label", "label": "Secondary button label", "default": "Learn more" },
+    { "type": "url", "id": "secondary_button_url", "label": "Secondary button URL" },
+    { "type": "checkbox", "id": "show_countdown", "label": "Show countdown", "default": false },
+    { "type": "text", "id": "end_datetime_text", "label": "End datetime (placeholder text)", "default": "2026-12-31 23:59" },
+    { "type": "checkbox", "id": "closable", "label": "Closable", "default": true },
+    { "type": "color", "id": "background_color", "label": "Background color", "default": "#111111" },
+    { "type": "color", "id": "text_color", "label": "Text color", "default": "#ffffff" },
+    { "type": "color", "id": "primary_button_background", "label": "Primary button background", "default": "#ffffff" },
+    { "type": "color", "id": "primary_button_text_color", "label": "Primary button text color", "default": "#111111" }
+  ]
+}
+{% endschema %}
