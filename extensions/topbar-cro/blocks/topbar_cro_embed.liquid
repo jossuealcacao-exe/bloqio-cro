@@ -12,6 +12,7 @@
       --topbar-primary-text: {{ block.settings.primary_button_text_color }};
     "
     data-closable="{{ block.settings.closable }}"
+    data-storage-key="topbar-cro-closed-{{ block.id }}"
   >
     <div class="topbar-cro__content">
       <div class="topbar-cro__messages">
@@ -26,7 +27,7 @@
           <span
             class="topbar-cro__countdown"
             data-countdown-end="{{ block.settings.end_datetime_text }}"
-          ></span>
+          >00d 00h 00m 00s</span>
         {% endif %}
 
         {% if block.settings.primary_button_label != blank and block.settings.primary_button_url != blank %}
@@ -63,7 +64,7 @@
     { "type": "text", "id": "secondary_button_label", "label": "Secondary button label", "default": "Learn more" },
     { "type": "url", "id": "secondary_button_url", "label": "Secondary button URL" },
     { "type": "checkbox", "id": "show_countdown", "label": "Show countdown", "default": false },
-    { "type": "text", "id": "end_datetime_text", "label": "End datetime (placeholder text)", "default": "2026-12-31 23:59" },
+    { "type": "text", "id": "end_datetime_text", "label": "End datetime (YYYY-MM-DD HH:MM)", "default": "2026-12-31 23:59" },
     { "type": "checkbox", "id": "closable", "label": "Closable", "default": true },
     { "type": "color", "id": "background_color", "label": "Background color", "default": "#111111" },
     { "type": "color", "id": "text_color", "label": "Text color", "default": "#ffffff" },
