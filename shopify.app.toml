@@ -25,6 +25,7 @@ scopes = "write_metaobject_definitions,write_metaobjects,write_products"
 
 [auth]
 redirect_urls = [ "https://bloqio-cro-app-production.up.railway.app/api/auth" ]
+
 [product.metafields.app.demo_info]
 type = "single_line_text_field"
 name = "Demo Source Info"
