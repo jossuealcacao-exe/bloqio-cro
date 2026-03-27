@@ -1,6 +1,6 @@
 {% if block.settings.enable_bar %}
   {{ 'topbar-cro.css' | asset_url | stylesheet_tag }}
-  {{ 'topbar-cro.js' | asset_url | script_tag }}
+  <script src="{{ 'topbar-cro.js' | asset_url }}" defer></script>
 
   <div
     id="topbar-cro-{{ block.id }}"
