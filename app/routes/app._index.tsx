@@ -1,13 +1,11 @@
-import { useEffect } from "react";
 import type {
   ActionFunctionArgs,
   HeadersFunction,
   LoaderFunctionArgs,
 } from "react-router";
-import { useFetcher } from "react-router";
-import { useAppBridge } from "@shopify/app-bridge-react";
 import { authenticate } from "../shopify.server";
 import { boundary } from "@shopify/shopify-app-react-router/server";
+import styles from "./_index/styles.module.css";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   await authenticate.admin(request);
@@ -139,203 +137,96 @@ export const action = async ({ request }: ActionFunctionArgs) => {
 };
 
 export default function Index() {
-  const fetcher = useFetcher<typeof action>();
-
-  const shopify = useAppBridge();
-  const isLoading =
-    ["loading", "submitting"].includes(fetcher.state) &&
-    fetcher.formMethod === "POST";
-
-  useEffect(() => {
-    if (fetcher.data?.product?.id) {
-      shopify.toast.show("Product created");
-    }
-  }, [fetcher.data?.product?.id, shopify]);
-
-  const generateProduct = () => fetcher.submit({}, { method: "POST" });
-
   return (
-    <s-page heading="Shopify app template">
-      <s-button slot="primary-action" onClick={generateProduct}>
-        Generate a product
+    <s-page heading="Bloqio CRO TopBar">
+      <s-button
+        slot="primary-action"
+        href="shopify://admin/themes/current/editor?context=apps"
+      >
+        Open Theme Editor
       </s-button>
 
-      <s-section heading="Congrats on creating a new Shopify app 🎉">
-        <s-paragraph>
-          This embedded app template uses{" "}
-          <s-link
-            href="https://shopify.dev/docs/apps/tools/app-bridge"
-            target="_blank"
-          >
-            App Bridge
-          </s-link>{" "}
-          interface examples like an{" "}
-          <s-link href="/app/additional">additional page in the app nav</s-link>
-          , as well as an{" "}
-          <s-link
-            href="https://shopify.dev/docs/api/admin-graphql"
-            target="_blank"
-          >
-            Admin GraphQL
-          </s-link>{" "}
-          mutation demo, to provide a starting point for app development.
-        </s-paragraph>
-      </s-section>
-      <s-section heading="Get started with products">
-        <s-paragraph>
-          Generate a product with GraphQL and get the JSON output for that
-          product. Learn more about the{" "}
-          <s-link
-            href="https://shopify.dev/docs/api/admin-graphql/latest/mutations/productCreate"
-            target="_blank"
-          >
-            productCreate
-          </s-link>{" "}
-          mutation in our API references. Includes a product{" "}
-          <s-link
-            href="https://shopify.dev/docs/apps/build/custom-data/metafields"
-            target="_blank"
-          >
-            metafield
-          </s-link>{" "}
-          and{" "}
-          <s-link
-            href="https://shopify.dev/docs/apps/build/custom-data/metaobjects"
-            target="_blank"
-          >
-            metaobject
-          </s-link>
-          .
-        </s-paragraph>
-        <s-stack direction="inline" gap="base">
-          <s-button
-            onClick={generateProduct}
-            {...(isLoading ? { loading: true } : {})}
-          >
-            Generate a product
-          </s-button>
-          {fetcher.data?.product && (
-            <s-button
-              onClick={() => {
-                shopify.intents.invoke?.("edit:shopify/Product", {
-                  value: fetcher.data?.product?.id,
-                });
-              }}
-              target="_blank"
-              variant="tertiary"
-            >
-              Edit product
-            </s-button>
-          )}
-        </s-stack>
-        {fetcher.data?.product && (
-          <s-section heading="productCreate mutation">
-            <s-stack direction="block" gap="base">
-              <s-box
-                padding="base"
-                borderWidth="base"
-                borderRadius="base"
-                background="subdued"
-              >
-                <pre style={{ margin: 0 }}>
-                  <code>{JSON.stringify(fetcher.data.product, null, 2)}</code>
-                </pre>
-              </s-box>
+      <div className={styles.layout}>
+        <s-section>
+          <div className={styles.hero}>
+            <h1 className={styles.heroTitle}>Bloqio CRO TopBar</h1>
+            <p className={styles.heroSubtitle}>
+              A powerful, customizable top bar for Shopify stores to highlight
+              promotions, create urgency, and drive more clicks.
+              <br />
+              Una top bar potente y personalizable para Shopify que destaca
+              promociones, crea urgencia y genera mas clics.
+            </p>
+          </div>
+        </s-section>
 
-              <s-heading>productVariantsBulkUpdate mutation</s-heading>
-              <s-box
-                padding="base"
-                borderWidth="base"
-                borderRadius="base"
-                background="subdued"
+        <s-section>
+          <div className={styles.moduleCard}>
+            <div className={styles.moduleHeader}>
+              <h2 className={styles.moduleTitle}>Bloqio CRO TopBar</h2>
+              <span className={styles.status}>Released</span>
+            </div>
+            <p className={styles.moduleDescription}>
+              Highlight promotions, add urgency with countdowns, guide shoppers
+              with CTA buttons, and control visibility across your storefront.
+              <br />
+              Destaca promociones, agrega urgencia con countdowns, guía a tus
+              visitantes con botones CTA y controla la visibilidad en tu
+              storefront.
+            </p>
+            <div className={styles.featuresBlock}>
+              <h3 className={styles.blockTitle}>What it does / Qué hace</h3>
+              <ul className={styles.features}>
+                <li>Primary and secondary CTA / CTA principal y secundario</li>
+                <li>
+                  Countdown timer for urgency / Countdown para generar urgencia
+                </li>
+                <li>Closable bar with persistence / Cierre persistente</li>
+                <li>Mobile compact mode / Modo compacto para mobile</li>
+                <li>Left or center alignment / Alineación izquierda o centrada</li>
+                <li>Homepage-only visibility / Mostrar solo en home</li>
+                <li>Smart scroll behavior / Scroll inteligente</li>
+              </ul>
+            </div>
+            <div className={styles.actions}>
+              <s-button href="shopify://admin/themes/current/editor?context=apps">
+                Open Theme Editor
+              </s-button>
+              <s-button
+                variant="secondary"
+                href="https://help.shopify.com/en/manual/online-store/themes/customizing-themes/add-app-embed-block"
+                target="_blank"
               >
-                <pre style={{ margin: 0 }}>
-                  <code>{JSON.stringify(fetcher.data.variant, null, 2)}</code>
-                </pre>
-              </s-box>
+                View setup guide
+              </s-button>
+            </div>
+          </div>
+        </s-section>
 
-              <s-heading>metaobjectUpsert mutation</s-heading>
-              <s-box
-                padding="base"
-                borderWidth="base"
-                borderRadius="base"
-                background="subdued"
-              >
-                <pre style={{ margin: 0 }}>
-                  <code>
-                    {JSON.stringify(fetcher.data.metaobject, null, 2)}
-                  </code>
-                </pre>
-              </s-box>
-            </s-stack>
+        <div className={styles.grid}>
+          <s-section heading="Quick setup / Configuración rápida">
+            <ol className={styles.steps}>
+              <li>Activate the app embed / Activa el app embed</li>
+              <li>
+                Customize your message, CTA, countdown, and layout /
+                Personaliza mensaje, CTA, countdown y layout
+              </li>
+              <li>
+                Save and preview your storefront / Guarda y previsualiza tu
+                tienda
+              </li>
+            </ol>
           </s-section>
-        )}
-      </s-section>
 
-      <s-section slot="aside" heading="App template specs">
-        <s-paragraph>
-          <s-text>Framework: </s-text>
-          <s-link href="https://reactrouter.com/" target="_blank">
-            React Router
-          </s-link>
-        </s-paragraph>
-        <s-paragraph>
-          <s-text>Interface: </s-text>
-          <s-link
-            href="https://shopify.dev/docs/api/app-home/using-polaris-components"
-            target="_blank"
-          >
-            Polaris web components
-          </s-link>
-        </s-paragraph>
-        <s-paragraph>
-          <s-text>API: </s-text>
-          <s-link
-            href="https://shopify.dev/docs/api/admin-graphql"
-            target="_blank"
-          >
-            GraphQL
-          </s-link>
-        </s-paragraph>
-        <s-paragraph>
-          <s-text>Custom data: </s-text>
-          <s-link
-            href="https://shopify.dev/docs/apps/build/custom-data"
-            target="_blank"
-          >
-            Metafields &amp; metaobjects
-          </s-link>
-        </s-paragraph>
-        <s-paragraph>
-          <s-text>Database: </s-text>
-          <s-link href="https://www.prisma.io/" target="_blank">
-            Prisma
-          </s-link>
-        </s-paragraph>
-      </s-section>
-
-      <s-section slot="aside" heading="Next steps">
-        <s-unordered-list>
-          <s-list-item>
-            Build an{" "}
-            <s-link
-              href="https://shopify.dev/docs/apps/getting-started/build-app-example"
-              target="_blank"
-            >
-              example app
-            </s-link>
-          </s-list-item>
-          <s-list-item>
-            Explore Shopify&apos;s API with{" "}
-            <s-link
-              href="https://shopify.dev/docs/apps/tools/graphiql-admin-api"
-              target="_blank"
-            >
-              GraphiQL
-            </s-link>
-          </s-list-item>
-        </s-unordered-list>
-      </s-section>
+          <s-section heading="Coming soon / Próximamente">
+            <ul className={styles.comingSoon}>
+              <li>Trust Bar</li>
+              <li>Sticky Add to Cart</li>
+              <li>FAQ Accordion</li>
+            </ul>
+          </s-section>
+        </div>
+      </div>
     </s-page>
   );
 }
