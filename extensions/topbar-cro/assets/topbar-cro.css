@@ -1,0 +1,219 @@
+.topbar-cro {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  width: 100%;
+  background: var(--topbar-bg, #111111);
+  color: var(--topbar-text, #ffffff);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  transform: translateY(0);
+  transition: transform 0.2s ease;
+  will-change: transform;
+}
+
+.topbar-cro.topbar-cro--hidden {
+  transform: translateY(calc(-100% - 2px));
+}
+
+.topbar-cro__content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 12px 48px 12px 16px;
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.topbar-cro__messages {
+  min-width: 0;
+  width: 100%;
+}
+
+.topbar-cro__main,
+.topbar-cro__sub {
+  margin: 0;
+}
+
+.topbar-cro__main {
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.topbar-cro__sub {
+  font-size: 12px;
+  line-height: 1.35;
+  opacity: 0.82;
+  margin-top: 2px;
+}
+
+.topbar-cro__actions {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  row-gap: 8px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.topbar-cro--align-left .topbar-cro__messages {
+  text-align: left;
+}
+
+.topbar-cro--align-left .topbar-cro__actions {
+  justify-content: flex-start;
+}
+
+.topbar-cro--align-center .topbar-cro__content {
+  align-items: center;
+}
+
+.topbar-cro--align-center .topbar-cro__messages {
+  text-align: center;
+}
+
+.topbar-cro--align-center .topbar-cro__actions {
+  justify-content: center;
+}
+
+.topbar-cro__countdown {
+  display: inline-flex;
+  align-items: center;
+  font-size: 12px;
+  white-space: nowrap;
+  font-weight: 600;
+  line-height: 1;
+  opacity: 0.92;
+  margin-right: 4px;
+  padding-right: 2px;
+}
+
+.topbar-cro__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  min-height: 30px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.topbar-cro__btn + .topbar-cro__btn {
+  margin-left: 2px;
+}
+
+.topbar-cro__btn--primary {
+  background: var(--topbar-primary-bg, #ffffff);
+  color: var(--topbar-primary-text, #111111);
+}
+
+.topbar-cro__btn--secondary {
+  color: var(--topbar-text, #ffffff);
+  border: 1px solid currentColor;
+}
+
+.topbar-cro__close {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: var(--topbar-text, #ffffff);
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 20px;
+  line-height: 1;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+@media (max-width: 749px) {
+  .topbar-cro--mobile-compact .topbar-cro__content {
+    padding: 8px 40px 8px 10px;
+    gap: 7px;
+  }
+
+  .topbar-cro--mobile-compact .topbar-cro__actions {
+    column-gap: 6px;
+    row-gap: 5px;
+  }
+
+  .topbar-cro--mobile-compact .topbar-cro__main {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  .topbar-cro--mobile-compact .topbar-cro__sub {
+    font-size: 10px;
+  }
+
+  .topbar-cro--mobile-compact .topbar-cro__countdown {
+    font-size: 11px;
+    margin-right: 3px;
+    padding-right: 1px;
+  }
+
+  .topbar-cro--mobile-compact .topbar-cro__btn {
+    min-height: 28px;
+    padding: 5px 10px;
+  }
+}
+
+@media (min-width: 750px) {
+  .topbar-cro__content {
+    padding: 12px 48px 12px 16px;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .topbar-cro__messages {
+    width: auto;
+    max-width: 58%;
+  }
+
+  .topbar-cro__actions {
+    width: auto;
+    justify-content: flex-end;
+    margin-left: auto;
+    column-gap: 10px;
+    row-gap: 8px;
+  }
+
+  .topbar-cro--align-left .topbar-cro__content {
+    justify-content: flex-start;
+  }
+
+  .topbar-cro--align-left .topbar-cro__actions {
+    justify-content: flex-start;
+    margin-left: 20px;
+  }
+
+  .topbar-cro--align-center .topbar-cro__content {
+    justify-content: center;
+  }
+
+  .topbar-cro--align-center .topbar-cro__messages {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .topbar-cro--align-center .topbar-cro__actions {
+    justify-content: center;
+    margin-left: 0;
+    width: auto;
+  }
+}
