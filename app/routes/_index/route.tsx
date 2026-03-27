@@ -7,9 +7,14 @@ import styles from "./styles.module.css";
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
   const url = new URL(request.url);
+  const hasEmbeddedLaunchParam =
+    Boolean(url.searchParams.get("shop")) ||
+    Boolean(url.searchParams.get("host")) ||
+    Boolean(url.searchParams.get("embedded"));
 
-  if (url.searchParams.get("shop")) {
-    throw redirect(`/app?${url.searchParams.toString()}`);
+  if (hasEmbeddedLaunchParam) {
+    const queryString = url.searchParams.toString();
+    throw redirect(queryString ? `/app?${queryString}` : "/app");
   }
 
   return { showForm: Boolean(login) };
@@ -21,9 +26,10 @@ export default function App() {
   return (
     <div className={styles.index}>
       <div className={styles.content}>
-        <h1 className={styles.heading}>A short heading about [your app]</h1>
+        <h1 className={styles.heading}>Bloqio CRO TopBar</h1>
         <p className={styles.text}>
-          A tagline about [your app] that describes your value proposition.
+          A powerful, customizable top bar for Shopify stores to highlight
+          promotions, create urgency, and drive more clicks.
         </p>
         {showForm && (
           <Form className={styles.form} method="post" action="/auth/login">
