@@ -1,7 +1,7 @@
 {% if block.settings.enable_bar %}
   {% if block.settings.show_home_only == false or request.page_type == 'index' %}
-  {{ 'bloqio-topbar-v2.css' | asset_url | stylesheet_tag }}
-  <script src="{{ 'bloqio-topbar-v2.js' | asset_url }}" defer></script>
+  {{ 'topbar-cro.css' | asset_url | stylesheet_tag }}
+  <script src="{{ 'topbar-cro.js' | asset_url }}" defer></script>
 
   <div
     id="topbar-cro-{{ block.id }}"
