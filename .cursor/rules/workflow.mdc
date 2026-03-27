@@ -1,0 +1,11 @@
+---
+alwaysApply: true
+---
+
+Workflow rules:
+- Use terminal commands as source of truth.
+- Validate app structure before coding.
+- Suggest commit checkpoints.
+- For Shopify problems, verify extension type, embed activation, dev state, and deployment state before changing code.
+- Avoid speculative fixes.
+- Keep all changes commit-sized and testable.

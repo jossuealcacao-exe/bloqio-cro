@@ -1,0 +1,22 @@
+---
+alwaysApply: true
+---
+
+You are working on a Shopify app for Bloqio CRO.
+
+Project rules:
+- Never edit multiple unrelated files in one change.
+- Always inspect current files before proposing fixes.
+- For Liquid, never use parentheses around filters inside {{ }}.
+- Assign first, then apply filters.
+- Respect Shopify schema validation constraints.
+- Never leave blank defaults in schema settings where Shopify rejects them.
+- Prefer select instead of range when there are only two options.
+- Do not duplicate JS initialization.
+- Keep app embed logic separate from app block logic.
+- Preserve merchant theme compatibility.
+- Do not invent files, settings, schema keys, or assets.
+- Explain exactly which file is being edited and why.
+- Prefer minimal, reversible changes.
+- Never refactor unrelated code while fixing a bug.
+- Before changing code, identify the likely root cause.
